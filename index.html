@@ -11,7 +11,7 @@
 :root{--base:#120A06;--base2:#1B0F08;--core:#FFB347;--mid:#E8641E;--deep:#7A2A0E;--cream:#FFF1DC;--soft:#D2BC9A;--accent:#FF6A2B;--line:rgba(255,241,220,.14);--d:'Dela Gothic One',sans-serif;--b:'Space Grotesk',sans-serif;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:border-box}
 html{background:var(--base);scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 70px)}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.001ms!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.001ms!important}.wm h1 span{animation:none}}
 body{margin:0;background:var(--base);color:var(--cream);font:16px/1.6 var(--b);overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--base);z-index:29}
 a{color:inherit}
@@ -19,7 +19,9 @@ a{color:inherit}
 
 header{position:fixed;top:0;left:0;right:0;z-index:30;padding:calc(env(safe-area-inset-top,0px) + 16px) 32px 16px;display:flex;align-items:center;justify-content:space-between;transition:background .3s}
 header.s{background:rgba(18,10,6,.92);backdrop-filter:blur(8px)}
-.logo{display:flex;position:relative;z-index:3;color:var(--cream)}
+.logo{display:flex;align-items:center;gap:10px;position:relative;z-index:3;color:var(--cream);text-decoration:none}
+.brand-t{font:700 13px var(--d);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;opacity:0;transition:opacity .4s ease}
+header.past .brand-t{opacity:1}
 .logo svg{width:30px;height:30px}
 nav{display:flex;align-items:center;gap:28px}
 nav a.l{font:12px var(--d);letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:color .2s}
@@ -47,6 +49,10 @@ nav a.l{font-size:15px}
 .wm{position:absolute;left:clamp(20px,7vw,110px);top:clamp(150px,24vh,230px);z-index:3;width:max-content;text-align:center}
 .wm .arc{display:block;width:0;min-width:100%;height:28px;margin-bottom:10px}
 .wm h1{margin:0;font:400 clamp(42px,5.8vw,86px)/.96 var(--d);text-transform:uppercase}
+.wm h1 span{animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+.wm h1 span:nth-of-type(2){animation:rise .9s cubic-bezier(.2,.7,.2,1) .18s both,glow 6s ease-in-out 1.2s infinite}
+@keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes glow{0%,100%{text-shadow:0 0 0 rgba(255,179,71,0)}50%{text-shadow:0 0 18px rgba(255,179,71,.35)}}
 .wm h1 span{display:block}
 .wm .og{font-size:.62em}
 .fig{position:absolute;left:62%;bottom:6%;height:min(76vh,700px);aspect-ratio:200/520;transform:translateX(-50%);z-index:2}
@@ -135,12 +141,12 @@ footer{padding:40px 20px;text-align:center;font:10px var(--d);letter-spacing:.08
 </svg>
 
 <header>
-<a href="#home" class="logo" aria-label="OG FOREVA home"><svg viewBox="0 0 24 24"><path d="M12 1l2.200 7.300L22 12l-7.800 3.700L12 23l-2.200-7.300L2 12l7.800-3.700z" fill="currentColor"/></svg></a>
+<a href="#home" class="logo" aria-label="OG FOREVA home"><svg viewBox="0 0 24 24"><path d="M12 1l2.200 7.300L22 12l-7.800 3.700L12 23l-2.200-7.300L2 12l7.800-3.700z" fill="currentColor"/></svg><span class="brand-t">OG FOREVA</span></a>
 <button class="tg" aria-label="Menu" aria-expanded="false"><span class="ic"></span><span>Menu</span></button>
 <nav id="nav">
-<a class="l" href="#home">Home</a><a class="l" href="#music">Music</a><a class="l" href="#events">Events</a><a class="l" href="#shop">Shop</a><a class="l" href="#community">Community</a><a class="l" href="#contact">Contact</a>
+<a class="l" href="#home">Home</a><a class="l" href="#music">Music</a><a class="l" href="#events">Events</a><a class="l" href="#shop">Shop</a><a class="l" href="#connect">Connect</a>
 <div class="soc">
-<a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a><a href="#" aria-label="TikTok"><svg><use href="#tt"/></svg></a><a href="#" aria-label="Facebook"><svg><use href="#fb"/></svg></a><a href="#" aria-label="X"><svg><use href="#x"/></svg></a><a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a><a href="#" aria-label="Spotify"><svg><use href="#sp"/></svg></a><a href="#" aria-label="Apple Music"><svg><use href="#am"/></svg></a><a href="#" aria-label="SoundCloud"><svg><use href="#sc"/></svg></a>
+<a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a><a href="#" aria-label="TikTok"><svg><use href="#tt"/></svg></a><a href="#" aria-label="Facebook"><svg><use href="#fb"/></svg></a><a href="#" aria-label="X"><svg><use href="#x"/></svg></a><a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a><a href="#" aria-label="Spotify"><svg><use href="#sp"/></svg></a>
 </div>
 </nav>
 </header>
@@ -195,21 +201,20 @@ footer{padding:40px 20px;text-align:center;font:10px var(--d);letter-spacing:.08
 <form class="nf" data-m="You're on the list — thanks."><input type="email" required placeholder="you@email.com" aria-label="Email address"><button class="btn s" type="submit">Notify me</button></form><div class="msg"></div></div>
 </div></section>
 
-<section class="p com" id="community"><div class="in">
-<h2>Community</h2><p class="sub">Join the mailing list for early tracks, ticket presales, and the occasional voice memo from the studio.</p>
-<form class="nf" data-m="Welcome in — check your inbox."><input type="email" required placeholder="you@email.com" aria-label="Email address"><button class="btn s" type="submit">Join</button></form><div class="msg"></div>
-<div class="soc"><a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a><a href="#" aria-label="TikTok"><svg><use href="#tt"/></svg></a><a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a><a href="#" aria-label="Spotify"><svg><use href="#sp"/></svg></a><a href="#" aria-label="SoundCloud"><svg><use href="#sc"/></svg></a></div>
-</div></section>
-
-<section class="p" id="contact"><div class="in ct">
-<div><h2>Contact</h2><p class="sub" style="margin-bottom:0">For bookings, press, or collaborations — a real person reads every message.</p>
-<dl><dt>Booking</dt><dd><a href="mailto:booking@ogforeva.com">booking@ogforeva.com</a></dd><dt>Press</dt><dd><a href="mailto:press@ogforeva.com">press@ogforeva.com</a></dd></dl></div>
-<form class="f" data-m="Message sent — you'll hear back soon.">
+<section class="p" id="connect"><div class="in ct">
+<div><h2>Connect</h2><p class="sub">Join the list for early tracks, ticket presales, and the occasional voice memo from the studio.</p>
+<form class="nf" data-m="Welcome in — check your inbox." style="margin:0"><input type="email" required placeholder="you@email.com" aria-label="Email address"><button class="btn s" type="submit">Join</button></form><div class="msg"></div>
+<div class="soc" style="justify-content:flex-start;margin-top:28px"><a href="#" aria-label="Instagram"><svg><use href="#ig"/></svg></a><a href="#" aria-label="TikTok"><svg><use href="#tt"/></svg></a><a href="#" aria-label="YouTube"><svg><use href="#yt"/></svg></a><a href="#" aria-label="Spotify"><svg><use href="#sp"/></svg></a></div></div>
+<div><h2>Bookings &amp; press</h2><p class="sub" style="margin-bottom:0">For bookings, press, or collaborations — a real person reads every message.</p>
+<dl><dt>Booking</dt><dd><a href="mailto:booking@ogforeva.com">booking@ogforeva.com</a></dd><dt>Press</dt><dd><a href="mailto:press@ogforeva.com">press@ogforeva.com</a></dd></dl>
+<form class="f" data-m="Message sent — you'll hear back soon." style="margin-top:28px">
 <div><label for="n">Name</label><input id="n" required></div>
 <div><label for="e">Email</label><input id="e" type="email" required></div>
 <div><label for="m">Message</label><textarea id="m" required></textarea></div>
-<button class="btn s" type="submit" style="align-self:flex-start">Send message</button><div class="msg"></div></form>
+<button class="btn s" type="submit" style="align-self:flex-start">Send message</button><div class="msg"></div></form></div>
 </div></section>
+
+
 </main>
 
 <footer>© 2026 OG FOREVA. All rights reserved.</footer>
@@ -218,14 +223,14 @@ footer{padding:40px 20px;text-align:center;font:10px var(--d);letter-spacing:.08
 (function(){
 var h=document.querySelector('header'),nav=document.getElementById('nav'),tg=document.querySelector('.tg');
 var L=[].slice.call(document.querySelectorAll('nav a.l')),S=L.map(function(a){return document.querySelector(a.getAttribute('href'))});
-function f(){h.classList.toggle('s',scrollY>40);var c=0;S.forEach(function(s,i){if(s.getBoundingClientRect().top<innerHeight*.4)c=i});L.forEach(function(a,i){a.classList.toggle('on',i===c)})}
+function f(){h.classList.toggle('s',scrollY>40);h.classList.toggle('past',scrollY>innerHeight*.6);var c=0;S.forEach(function(s,i){if(s.getBoundingClientRect().top<innerHeight*.4)c=i});L.forEach(function(a,i){a.classList.toggle('on',i===c)})}
 addEventListener('scroll',f,{passive:true});f();
-tg.addEventListener('click',function(){var o=nav.classList.toggle('o');tg.setAttribute('aria-expanded',o)});
+var openY=0;tg.addEventListener('click',function(){var o=nav.classList.toggle('o');openY=scrollY;tg.setAttribute('aria-expanded',o)});
 function closeMenu(){nav.classList.remove('o');tg.setAttribute('aria-expanded',false)}
 tg.classList.add('pulse');setTimeout(function(){tg.classList.remove('pulse')},5000);
 var seen=false;try{seen=sessionStorage.getItem('ogSeenMenu')==='1'}catch(x){}
-if(!seen&&innerWidth<=1080){setTimeout(function(){nav.classList.add('o');tg.setAttribute('aria-expanded',true)},600);setTimeout(closeMenu,2100);try{sessionStorage.setItem('ogSeenMenu','1')}catch(x){}}
-addEventListener('scroll',closeMenu,{passive:true});
+if(!seen&&innerWidth<=1080){setTimeout(function(){nav.classList.add('o');openY=scrollY;tg.setAttribute('aria-expanded',true)},600);setTimeout(closeMenu,2100);try{sessionStorage.setItem('ogSeenMenu','1')}catch(x){}}
+addEventListener('scroll',function(){if(Math.abs(scrollY-openY)>40)closeMenu()},{passive:true});
 document.addEventListener('click',function(e){if(!nav.contains(e.target)&&!tg.contains(e.target))closeMenu()});
 nav.addEventListener('click',function(e){if(e.target.closest('a')){nav.classList.remove('o');tg.setAttribute('aria-expanded',false)}});
 var rm=document.querySelector('.rm'),mo=document.getElementById('more');rm.addEventListener('click',function(){var o=mo.classList.toggle('open');rm.setAttribute('aria-expanded',o);rm.textContent=o?'Show less':'Read more'});
